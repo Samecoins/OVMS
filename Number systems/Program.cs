@@ -20,10 +20,8 @@ class Program
             Console.Write("Введите число в исходной системе счисления: ");
             string inputNumber = Console.ReadLine();
 
-            // Convert the number to the decimal system
             int decimalNumber = Convert.ToInt32(inputNumber, originalSystem);
 
-            // Convert to the target numeral system
             string result = Convert.ToString(Math.Abs(decimalNumber), targetSystem).ToUpper();
 
             if (decimalNumber < 0)
@@ -31,7 +29,6 @@ class Program
 
             Console.WriteLine($"Число в конечной системе счисления ({targetSystem}): {result}");
 
-            // If the target system is binary, output in direct code
             if (targetSystem == 2)
             {
                 string directCode = GetBinaryWithDirectCode(decimalNumber);
@@ -47,10 +44,10 @@ class Program
     static string GetBinaryWithDirectCode(int number)
     {
         if (number == 0)
-            return "0000"; // Return 4 bits for zero
+            return "0000";
 
-        int bits = Math.Max(4, (int)Math.Ceiling(Math.Log(Math.Abs(number), 2) / 4) * 4); // Determine bit size (4, 8, 16, or 32 bits)
-        string binaryNumber = Convert.ToString(Math.Abs(number), 2).PadLeft(bits, '0'); // Direct code
+        int bits = Math.Max(4, (int)Math.Ceiling(Math.Log(Math.Abs(number), 2) / 4) * 4);
+        string binaryNumber = Convert.ToString(Math.Abs(number), 2).PadLeft(bits, '0'); 
 
         if (number < 0)
         {
